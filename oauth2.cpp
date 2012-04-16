@@ -9,6 +9,8 @@
 
 #include <QJson/Parser>
 
+#include <QMessageBox>
+
 OAuth2::OAuth2(QWidget * p)
     : QObject(p)
 {
@@ -124,6 +126,16 @@ bool OAuth2::isAuthorized()
 void OAuth2::startLogin(bool bForce)
 {
     qDebug() << "OAuth2::startLogin";
+
+    if(m_strClientID == "YOUR_CLIENT_ID_HERE" || m_strRedirectURI == "YOUR_REDIRECT_URI_HERE")
+    {
+        QMessageBox::warning(
+            qobject_cast<QWidget *>(parent()), "Warning",
+            "To work with application you need to register your own application in <b>Google</b>.\n"
+            "Learn more from <a href=\"http://code.google.com/p/qt-google-plus/wiki/HowToRegisterYourApplicationInGoogle\">here</a>");
+        return;
+    }
+
     if(m_strRefreshToken.isEmpty() || bForce)
     {
         m_pLoginDialog->setLoginUrl(permanentLoginUrl());
