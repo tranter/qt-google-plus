@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta http-equiv="content-type"  content="text/html; charset=UTF-8"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+
+    <title>QObject Generator</title>
+    <script type="text/javascript" src="person.js"></script>
+<!--    <script type="text/javascript" src="generator.js"></script>-->
+  </head>
+  <body>
+
+
+<span style="display: block; white-space: pre;">
+class Person : public QObject
+{
+    Q_OBJECT
+
+  <script type="text/javascript">
+    for(var key in json_object)
+    {
+        text = "Q_PROPTERTY( ";
+
+        if( json_object[key] == "string" )
+            text += "QString ";
+        else if( json_object[key] == "boolean" )
+            text += "bool ";
+        else text += "UNDEFINED ";
+
+
+
+        document.write(key+"="+json_object[key]+"\n");
+    }
+  </script>
+
+public:
+
+
+public slots:
+
+
+
+private:
+
+
+};
+
+<span>
+
+  </body>
+</html>
