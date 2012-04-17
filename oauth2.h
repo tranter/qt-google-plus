@@ -46,6 +46,9 @@ private:
     QString m_strRedirectURI;
     QString m_strResponseType;
 
+    QString m_strCompanyName;
+    QString m_strAppName;
+
     LoginDialog* m_pLoginDialog;
     QNetworkAccessManager * m_pNetworkAccessManager;
 

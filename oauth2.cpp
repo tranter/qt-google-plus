@@ -20,6 +20,10 @@ OAuth2::OAuth2(QWidget * p)
     m_strClientSecret = "YOUR_CLIENT_SECRET_HERE";
     m_strRedirectURI = "YOUR_REDIRECT_URI_HERE";
 
+    m_strCompanyName = "ICS"; //You company here
+    m_strAppName = "QtGooglePlus"; //Your application name here
+
+
     m_pLoginDialog = new LoginDialog(p);
     connect(m_pLoginDialog, SIGNAL(accessTokenObtained()), this, SLOT(accessTokenObtained()));
     connect(m_pLoginDialog, SIGNAL(codeObtained()), this, SLOT(codeObtained()));
@@ -28,14 +32,14 @@ OAuth2::OAuth2(QWidget * p)
     connect(m_pNetworkAccessManager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(replyFinished(QNetworkReply*)));
 
-    QSettings settings("ICS", "Google API Plus Client");
+    QSettings settings(m_strCompanyName, m_strAppName);
     m_strRefreshToken = settings.value("refresh_token", "").toString();
 
 }
 
 void OAuth2::accessTokenObtained()
 {
-    QSettings settings("ICS", "Google API Plus Client");
+    QSettings settings(m_strCompanyName, m_strAppName);
     m_strAccessToken = m_pLoginDialog->accessToken();
     settings.setValue("access_token", m_strAccessToken);
     m_pLoginDialog->setLoginUrl("");
@@ -84,7 +88,7 @@ void OAuth2::replyFinished(QNetworkReply* reply)
     m_strRefreshToken = result.toMap()["refresh_token"].toString();
     if(!m_strRefreshToken.isEmpty())
     {
-        QSettings settings("ICS", "Google API Plus Client");
+        QSettings settings(m_strCompanyName, m_strAppName);
         settings.setValue("refresh_token", m_strRefreshToken);
      }
     m_strAccessToken = result.toMap()["access_token"].toString();
