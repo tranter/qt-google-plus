@@ -14,12 +14,10 @@
 OAuth2::OAuth2(QWidget * p)
     : QObject(p)
 {
-    //property string oauth_link: "https://accounts.google.com/o/oauth2/auth?&client_id=476807742904-1e2qesck2a151t6envel2756heus7ddt.apps.googleusercontent.com&redirect_uri=http://www.ics.com/oauth2callback&response_type=token&scope=https://www.googleapis.com/auth/books"
-
     m_strEndPoint = "https://accounts.google.com/o/oauth2/auth";
     m_strScope = "https://www.googleapis.com/auth/plus.me"; //Access to Plus service
     m_strClientID = "YOUR_CLIENT_ID_HERE";
-    m_strClientSecret = "YOUR_CLIENT_SECRET";
+    m_strClientSecret = "YOUR_CLIENT_SECRET_HERE";
     m_strRedirectURI = "YOUR_REDIRECT_URI_HERE";
 
     m_pLoginDialog = new LoginDialog(p);
@@ -127,7 +125,8 @@ void OAuth2::startLogin(bool bForce)
 {
     qDebug() << "OAuth2::startLogin";
 
-    if(m_strClientID == "YOUR_CLIENT_ID_HERE" || m_strRedirectURI == "YOUR_REDIRECT_URI_HERE")
+    if(m_strClientID == "YOUR_CLIENT_ID_HERE" || m_strRedirectURI == "YOUR_REDIRECT_URI_HERE" ||
+            m_strClientSecret == "YOUR_CLIENT_SECRET_HERE")
     {
         QMessageBox::warning(
             qobject_cast<QWidget *>(parent()), "Warning",
