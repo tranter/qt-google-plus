@@ -1,3 +1,7 @@
+#ifdef CISO646
+#include <ciso646>
+#endif
+
 #include "plus_data_manager.h"
 
 #include <QJson/Parser>
