@@ -19,6 +19,8 @@ public:
     QVariantList getComments()      const { return m_comments;      }
     QVariantList getActivityPeople()const { return m_activityPeople;}
 
+    QString userEmail() const { return m_strUserEmail; }
+
 signals:
     void errorOccured(const QString &);
 
@@ -30,6 +32,8 @@ signals:
     void newPersonData( const QVariant & jsonPerson  );
     void newActivity(   const QVariant & jsonActivity);
     void newComment(    const QVariant & jsonComment );
+
+    void userEmailReady( const QString & userEmail );
 
 public slots:
     // people
@@ -68,6 +72,8 @@ public slots:
         int maxResult = 10
     );
 
+    void getUserEmail(const QString & access_token);
+
 private slots:
     void replyFinished(class QNetworkReply*);
 
@@ -88,6 +94,8 @@ private:
     QVariantList m_activities;
     QVariantList m_comments;
     QVariantList m_activityPeople;
+
+    QString m_strUserEmail;
 };
 
 #endif // PLUS_DATA_MANAGER_H

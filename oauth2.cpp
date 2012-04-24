@@ -15,7 +15,7 @@ OAuth2::OAuth2(QWidget * p)
     : QObject(p)
 {
     m_strEndPoint = "https://accounts.google.com/o/oauth2/auth";
-    m_strScope = "https://www.googleapis.com/auth/plus.me"; //Access to Plus service
+    m_strScope = "https://www.googleapis.com/auth/plus.me+https://www.googleapis.com/auth/userinfo.email"; //Access to Plus service
     m_strClientID = "YOUR_CLIENT_ID_HERE";
     m_strClientSecret = "YOUR_CLIENT_SECRET_HERE";
     m_strRedirectURI = "YOUR_REDIRECT_URI_HERE";

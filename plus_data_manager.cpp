@@ -99,6 +99,13 @@ replyFinished(QNetworkReply * networkReply)
         return;
     }
 
+    if(strUrl.contains("userinfo"))
+    {
+        m_strUserEmail = result.toMap()["email"].toString();
+        emit userEmailReady( m_strUserEmail );
+        return;
+    }
+
     QString kind = result.toMap()["kind"].toString();
     if( kind.isEmpty() )
     {
@@ -152,7 +159,6 @@ replyFinished(QNetworkReply * networkReply)
 
 
 }
-
 
 
 void
@@ -352,4 +358,10 @@ findPeopleByActivity(
         url += "&maxResults=" + QString::number(maxResult);
 
     sendRequest(url, access_token, GetRequest);
+}
+
+void PlusDataManager::
+getUserEmail(const QString& access_token)
+{
+    sendRequest("https://www.googleapis.com/oauth2/v1/userinfo", access_token );
 }

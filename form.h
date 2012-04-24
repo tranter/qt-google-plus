@@ -21,6 +21,9 @@ public:
 
     void startLogin(bool bForce); //Show login dialog even if there is gotten already access_token.
 
+signals:
+    void userEmailChanged(const QString & userEmail);
+
 private:
     void setupActivitiesWidget();
     void setupSimplyActivitiesWidget();

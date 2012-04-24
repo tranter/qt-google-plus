@@ -22,6 +22,8 @@ public:
 public slots:
     void startLogin();
 
+private slots:
+    void setUserEmail(const QString & email);
 
 private:
     Ui::MainWindow *ui;

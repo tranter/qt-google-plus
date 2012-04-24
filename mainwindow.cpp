@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget * p) :
 
     m_pForm = new Form(this);
     setCentralWidget(m_pForm);
+
+    connect(m_pForm, SIGNAL(userEmailChanged(QString)), this, SLOT(setUserEmail(QString)));
 }
 
 MainWindow::~MainWindow()
@@ -28,4 +30,11 @@ void MainWindow::startLogin()
 void MainWindow::startLoginDefault()
 {
     m_pForm->startLogin(false);
+}
+
+void MainWindow::
+setUserEmail(const QString & email)
+{
+    ui->statusBar->showMessage( "Current google account: " + email );
+    setWindowTitle( QString("Google+ API Client (%1)").arg(email) );
 }

@@ -30,6 +30,8 @@ Form::Form(QWidget * p) :
             this, SLOT(errorOccured(QString)));
     connect(& m_plusDataManager, SIGNAL(activitiesFeedReady(QString)),
             this, SLOT(setActivitiesFeed(QString)));
+    connect(& m_plusDataManager, SIGNAL(userEmailReady(QString)),
+            this, SIGNAL(userEmailChanged(QString)));
 
     m_pLanguageListModel = new QStringListModel(this);
     connect( m_pLanguageListModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
@@ -127,7 +129,7 @@ setupCommentsWidget()
 
 void Form::loginDone()
 {
-
+    m_plusDataManager.getUserEmail( m_pOauth2->accessToken() );
 }
 
 void Form::errorOccured(const QString& error)
